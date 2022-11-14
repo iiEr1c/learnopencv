@@ -3,18 +3,13 @@
 #include <opencv4/opencv2/opencv.hpp>
 
 int main() {
-  auto img = cv::imread(
-      "/home/eric/code/learnopencv/opencv_handle_picture/Lenna.png", 0);
-  img.rowRange(100, 200).colRange(20, 150) = 255;
-
-  for (int i = 300; i < 400; ++i) {
-    for (int j = 20; j < 150; ++j) {
-      img.row(i).col(j) = 255;
+  auto img = cv::Mat(500, 500, CV_8UC3, cv::Scalar(255, 0, 0));
+  img.col(125).row(125) = cv::Scalar{0, 0, 0};
+  for (int i = 100; i < 200; ++i) {
+    for (int j = 200; j < 300; ++j) {
+      img.col(i).row(j) = cv::Scalar{0, 0, 0};
     }
   }
-
-  std::cout << img.rows << '\t' << img.cols << '\n';
-  std::cout << img.rowRange(0, 2).colRange(0, 2) << '\n';
   cv::imshow(std::string("Lenna"), img);
   cv::waitKey(0);
   return 0;
